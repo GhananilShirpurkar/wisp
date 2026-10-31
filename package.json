@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
-    "electron": "^42.0.0",
+    "electron": "^45.1.0",
     "prettier": "3.9.10",
     "typescript": "^7.0.2"
   },
