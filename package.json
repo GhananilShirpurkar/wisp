@@ -27,7 +27,7 @@
     "check:workflow": "node scripts/check-workflow.mjs"
   },
   "dependencies": {
-    "@sentry/node": "^10.0.0",
+    "@sentry/node": "^11.10.0",
     "@temporalio/client": "^1.13.0",
     "@temporalio/worker": "^1.13.0",
     "@temporalio/workflow": "^1.13.0"
