@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; media-src 'self' blob:"
+    />
+    <title>Wisp · Screen sharing</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="capture.css" />
+  </head>
+  <body data-state="idle">
+    <header class="app-header">
+      <a class="brand" aria-label="Wisp"
+        ><svg viewBox="0 0 28 30" aria-hidden="true">
+          <path d="M4 26V13C4 0 24 0 24 13v13l-5-3-5 4-5-4Z" fill="currentColor" />
+          <path
+            d="M10 12v4m8-4v4"
+            stroke="#272230"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          /></svg
+        ><span
+          >wisp<span class="brand-divider">/</span
+          ><span class="brand-page">Screen sharing</span></span
+        ></a
+      ><span class="badge"><span class="dot"></span> LINUX</span>
+    </header>
+    <main>
+      <section class="heading">
+        <div class="eyebrow">A LITTLE CONTEXT GOES A LONG WAY</div>
+        <h1>Your screen. <span>Your call.</span></h1>
+        <p>
+          Let your companion see what you’re working on.<br />You choose the screen. You decide when
+          to stop.
+        </p>
+      </section>
+      <section class="capture-card" aria-label="Screen sharing session">
+        <header class="capture-header">
+          <span class="preview-label"
+            ><span class="screen-symbol" aria-hidden="true">▣</span> Screen preview</span
+          ><span id="state-badge" class="badge"
+            ><span class="dot"></span><span id="state-label">Not sharing</span></span
+          >
+        </header>
+        <div class="preview">
+          <video muted playsinline aria-label="Live preview of your shared screen" hidden></video>
+          <div id="empty-preview">
+            <div class="monitor-art" aria-hidden="true">
+              <div class="monitor-face">
+                <span class="mini-ghost"><i></i><i></i></span><span class="monitor-cursor">↖</span>
+              </div>
+              <div class="monitor-stand"></div>
+            </div>
+            <h2 id="empty-title">A little space, just for you.</h2>
+            <p id="empty-detail">Your screen stays private until you choose to share.</p>
+          </div>
+          <span id="live-label" hidden><span class="dot"></span> LIVE PREVIEW</span>
+        </div>
+        <div class="session-details">
+          <div><span>SESSION</span><strong id="duration">Not started</strong></div>
+          <div><span>SOURCE</span><strong id="source">No screen selected</strong></div>
+          <div><span>SAMPLES</span><strong id="samples">0 frames</strong></div>
+        </div>
+        <footer class="capture-actions">
+          <div class="status-copy">
+            <span id="status-dot" class="dot"></span>
+            <p id="status" role="status" aria-live="polite">Ready when you are.</p>
+          </div>
+          <button id="start" class="primary">
+            <span id="start-label">Choose a screen</span><span aria-hidden="true"> ↗</span></button
+          ><button id="stop" class="secondary" disabled hidden>
+            <span aria-hidden="true">■ </span> Stop sharing
+          </button>
+        </footer>
+      </section>
+      <div id="error-panel" role="alert" hidden>
+        <strong id="error-title">Couldn’t start sharing</strong>
+        <p id="error-detail"></p>
+      </div>
+      <section class="assurances" aria-label="How sharing works">
+        <article>
+          <span class="assurance-icon" aria-hidden="true">⌁</span>
+          <div>
+            <h3>On your machine</h3>
+            <p>Frames go to your local model.<br />No cloud upload for vision.</p>
+          </div>
+        </article>
+        <article>
+          <span class="assurance-icon" aria-hidden="true">◷</span>
+          <div>
+            <h3>Only when needed</h3>
+            <p>The worker samples on demand.<br />This preview is not a recording.</p>
+          </div>
+        </article>
+        <article>
+          <span class="assurance-icon" aria-hidden="true">⏹</span>
+          <div>
+            <h3>Always your choice</h3>
+            <p>Stop sharing at any time.<br />Closing this window stops it too.</p>
+          </div>
+        </article>
+      </section>
+      <details class="help">
+        <summary>About sharing on Linux <span aria-hidden="true">＋</span></summary>
+        <p>
+          On Wayland, your desktop opens a secure screen chooser. On X11, Choose a screen shares the
+          primary display. Minimize this window to keep sharing. The worker needs capture enabled
+          and a local vision model; sharing alone does not start analysis.
+        </p>
+        <p>
+          Screen images stay in memory. Text observations may be saved in the local workflow
+          history.
+        </p>
+      </details>
+      <footer class="page-footer">
+        <span><span class="dot"></span> A quieter kind of assistant.</span
+        ><span>WISP / LOCAL SPIRIT</span>
+      </footer>
+    </main>
+    <script src="capture-renderer.js"></script>
+  </body>
+</html>

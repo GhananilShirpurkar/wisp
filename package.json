@@ -1,0 +1,60 @@
+{
+  "name": "wisp-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "worker": "node --env-file-if-exists=.env dist/worker.js",
+    "start": "node --env-file-if-exists=.env dist/start.js",
+    "status": "npm run start -- --status",
+    "ask": "npm run start -- --ask",
+    "stop": "npm run start -- --stop",
+    "ui": "node scripts/ui.mjs",
+    "demo": "node scripts/ui.mjs --demo",
+    "ghost:test": "node scripts/ghost-test.mjs",
+    "services": "node scripts/systemd.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "test:ui": "electron tests/ui-smoke.cjs",
+    "services:macos": "node scripts/launchd.mjs",
+    "wisp:test": "node scripts/ghost-test.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:workflow": "node scripts/check-workflow.mjs"
+  },
+  "dependencies": {
+    "@sentry/node": "^10.0.0",
+    "@temporalio/client": "^1.13.0",
+    "@temporalio/worker": "^1.13.0",
+    "@temporalio/workflow": "^1.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "electron": "^42.0.0",
+    "prettier": "3.9.10",
+    "typescript": "^5.9.0"
+  },
+  "productName": "Wisp",
+  "description": "A quiet, local desktop spirit for Linux.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GhananilShirpurkar/wisp.git"
+  },
+  "homepage": "https://github.com/GhananilShirpurkar/wisp#readme",
+  "bugs": {
+    "url": "https://github.com/GhananilShirpurkar/wisp/issues"
+  },
+  "keywords": [
+    "linux",
+    "electron",
+    "desktop-companion",
+    "ollama",
+    "temporal",
+    "wayland"
+  ]
+}

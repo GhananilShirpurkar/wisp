@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+logs/
+temporal.db*
+.runtime/
+.env.*
+!.env.example
+coverage/
+*.tsbuildinfo
+*.db
+*.db-shm
+*.db-wal
+/core
+/core.[0-9]*
