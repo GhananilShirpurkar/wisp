@@ -14,10 +14,6 @@ It stays out of your way until you need it. You control when screen sharing star
 
 ![Wisp screen-sharing window](docs/images/screen-sharing.png)
 
-> **Development Preview**
->
-> Wisp is currently under active development. Component tests and synthetic Electron capture tests pass locally, but the complete real-screen → Ollama → Temporal → overlay workflow has not yet been verified end to end. Wisp is not a packaged or production-certified release.
-
 ## What is Wisp?
 
 Wisp brings contextual AI assistance directly to your desktop through a lightweight floating companion.
@@ -78,12 +74,12 @@ For detailed instructions, see the [Setup Guide](docs/SETUP.md).
 
 ## Platform Support
 
-| Environment                   | Screen Capture                         | Window Detection                                 | Floating Overlay  |
-| ----------------------------- | -------------------------------------- | ------------------------------------------------ | ----------------- |
-| Linux / Wayland               | Desktop portal + PipeWire              | Timed sampling; native window titles unavailable | Requires XWayland |
-| Linux / X11                   | Primary display after explicit consent | `xprop`, with timed fallback                     | X11               |
-| Pure Wayland without XWayland | Not fully supported                    | —                                                | Not implemented   |
-| macOS                         | Legacy capture code retained           | Legacy AppleScript adapter                       | Not tested        |
+| Environment | Screen Capture | Window Detection | Floating Overlay |
+|---|---|---|---|
+| Linux / Wayland | Desktop portal + PipeWire | Timed sampling; native window titles unavailable | Requires XWayland |
+| Linux / X11 | Primary display after explicit consent | `xprop`, with timed fallback | X11 |
+| Pure Wayland without XWayland | Not fully supported | — | Not implemented |
+| macOS | Legacy capture code retained | Legacy AppleScript adapter | Not tested |
 
 Desktop compatibility is still being evaluated. When reporting issues, include your Linux distribution, desktop environment, and session type.
 
@@ -133,8 +129,6 @@ Wisp is designed to keep screen analysis local.
 - **Optional Telemetry:** Sentry integration is disabled unless explicitly configured and exports allowlisted metrics.
 
 ### Security Considerations
-
-Wisp is still a development project, and some security boundaries have limitations:
 
 - The capture bridge uses a token readable by the local user. It does not protect against malicious software running under the same user account.
 - The overlay-message port is unauthenticated and accepts messages from local processes.
