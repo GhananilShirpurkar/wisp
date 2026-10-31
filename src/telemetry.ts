@@ -43,18 +43,39 @@ export function scrubSentryEvent(event: any): any {
     spans: (event.spans ?? []).map(cleanSpan),
   };
 }
+export function createTelemetryOptions(dsn: string): Sentry.NodeOptions {
+  return {
+    dsn,
+    defaultIntegrations: false,
+    // Sentry 11 collects these categories by default. Keep all content collection off.
+    dataCollection: {
+      userInfo: false,
+      cookies: false,
+      httpHeaders: false,
+      httpBodies: [],
+      urlQueryParams: false,
+      graphQL: { document: false, variables: false },
+      genAI: { inputs: false, outputs: false },
+      mcp: { inputs: false, outputs: false },
+      databaseQueryData: false,
+      queues: false,
+      stackFrameVariables: false,
+      frameContextLines: 0,
+    },
+    // v11 streams spans by default, bypassing beforeSendTransaction.
+    // Preserve the existing allowlist boundary until migrating to streamed-span filtering.
+    traceLifecycle: 'static',
+    tracesSampleRate: 1,
+    maxBreadcrumbs: 0,
+    beforeBreadcrumb: () => null,
+    beforeSend: () => null,
+    beforeSendLog: () => null,
+    beforeSendMetric: () => null,
+    beforeSendTransaction: scrubSentryEvent,
+  };
+}
 export function initTelemetry() {
-  if (process.env.SENTRY_DSN)
-    Sentry.init({
-      dsn: process.env.SENTRY_DSN,
-      defaultIntegrations: false,
-      sendDefaultPii: false,
-      tracesSampleRate: 1,
-      maxBreadcrumbs: 0,
-      beforeBreadcrumb: () => null,
-      beforeSend: () => null,
-      beforeSendTransaction: scrubSentryEvent,
-    });
+  if (process.env.SENTRY_DSN) Sentry.init(createTelemetryOptions(process.env.SENTRY_DSN));
 }
 export async function traced<T>(op: string, fn: () => Promise<T>): Promise<T> {
   const start = performance.now();
