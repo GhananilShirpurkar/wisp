@@ -78,12 +78,12 @@ For detailed instructions, see the [Setup Guide](docs/SETUP.md).
 
 ## Platform Support
 
-| Environment | Screen Capture | Window Detection | Floating Overlay |
-|---|---|---|---|
-| Linux / Wayland | Desktop portal + PipeWire | Timed sampling; native window titles unavailable | Requires XWayland |
-| Linux / X11 | Primary display after explicit consent | `xprop`, with timed fallback | X11 |
-| Pure Wayland without XWayland | Not fully supported | — | Not implemented |
-| macOS | Legacy capture code retained | Legacy AppleScript adapter | Not tested |
+| Environment                   | Screen Capture                         | Window Detection                                 | Floating Overlay  |
+| ----------------------------- | -------------------------------------- | ------------------------------------------------ | ----------------- |
+| Linux / Wayland               | Desktop portal + PipeWire              | Timed sampling; native window titles unavailable | Requires XWayland |
+| Linux / X11                   | Primary display after explicit consent | `xprop`, with timed fallback                     | X11               |
+| Pure Wayland without XWayland | Not fully supported                    | —                                                | Not implemented   |
+| macOS                         | Legacy capture code retained           | Legacy AppleScript adapter                       | Not tested        |
 
 Desktop compatibility is still being evaluated. When reporting issues, include your Linux distribution, desktop environment, and session type.
 
